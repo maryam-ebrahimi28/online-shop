@@ -43,11 +43,6 @@ function cleanNumber(value) {
     ) || 0;
 }
 
-
-window.addEventListener('DOMContentLoaded', convertAllNumbersInPage);
-
-
-
 function saveCartToLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cart));
 };
