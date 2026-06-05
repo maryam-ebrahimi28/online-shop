@@ -169,6 +169,7 @@ function clearCart() {
 
     updateCartInfo();
 }
+clearCartBtn.addEventListener("click", clearCart);
 
 addBtn();
 loadCartFromLocalStorage();
