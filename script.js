@@ -1,5 +1,4 @@
 let counter = document.getElementById("counter");
-const addToCart = document.querySelectorAll(".add-to-cart");
 const cartList = document.getElementById("cart-list");
 const totalPriceEl = document.getElementById("price-to-pay");
 const clearCartBtn = document.getElementById("clear-cart-btn");
@@ -109,39 +108,40 @@ function createCartItem(product) {
 }
 
 function addBtn() {
-    addToCart.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
+    document.addEventListener("click", (e) => {
+        const addBtnEl = e.target.closest(".add-to-cart");
+        if (!addBtnEl) return;
 
-            let productCard = btn.closest(".product-item");
+        e.preventDefault();
 
-            let id = productCard.dataset.id;
-            let name = productCard.querySelector(".product-name").textContent;
-            let priceText = productCard.querySelector(".product-price").textContent;
-            let price = cleanNumber(priceText);
+        let productCard = addBtnEl.closest(".product-item");
+        if (!productCard) return;
 
+        let id = productCard.dataset.id;
+        let name = productCard.querySelector(".product-name").textContent;
+        let priceText = productCard.querySelector(".product-price").textContent;
+        let price = cleanNumber(priceText);
 
-            let existingProduct = cart.find(p => p.id === id);
+        let existingProduct = cart.find(p => p.id === id);
 
-            if (existingProduct) {
-                increaseQuantity(id);
-                return;
-            }
+        if (existingProduct) {
+            increaseQuantity(id);
+            return;
+        }
 
-            let product = {
-                id: id,
-                title: name,
-                price: price,
-                quantity: 1
-            };
+        let product = {
+            id: id,
+            title: name,
+            price: price,
+            quantity: 1
+        };
 
-            cart.push(product);
-
-            createCartItem(product);
-            updateCartInfo();
-        });
+        cart.push(product);
+        createCartItem(product);
+        updateCartInfo();
     });
 }
+
 
 function increaseQuantity(id) {
     let product = cart.find(p => p.id === id);
