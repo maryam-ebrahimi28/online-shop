@@ -171,4 +171,4 @@ function clearCart() {
 }
 
 addBtn();
-updateCartInfo();
+loadCartFromLocalStorage();
