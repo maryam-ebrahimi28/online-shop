@@ -26,6 +26,24 @@ function convertAllNumbersInPage() {
     }
 }
 
+function toEnglishDigits(str) {
+    return str.toString()
+        .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+        .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+}
+
+function cleanNumber(value) {
+    if (typeof value === "number") return value;
+
+    return Number(
+        toEnglishDigits(value)
+            .replace(/,/g, "")
+            .replace(/٬/g, "")
+            .replace(/[^\d]/g, "")
+    ) || 0;
+}
+
+
 window.addEventListener('DOMContentLoaded', convertAllNumbersInPage);
 
 
@@ -71,12 +89,12 @@ function createCartItem(product) {
     items.innerHTML = `
         <div class="info-product">
             <h4>${product.title}</h4>
-            <p>${toPersianDigits(product.price)} تومان</p>
+            <p>${cleanNumber(product.price).toLocaleString("fa-IR")} تومان</p>
         </div>
 
         <div class="quantity-controls">
             <button class="decrease-btn">-</button>
-            <span class="quantity-val">${toPersianDigits(product.quantity)}</span>
+            <span class="quantity-val">${toPersianDigits(cleanNumber(product.quantity))}</span>
             <button class="increase-btn">+</button>
         </div>
     `;
@@ -105,7 +123,8 @@ function addBtn() {
             let id = productCard.dataset.id;
             let name = productCard.querySelector(".product-name").textContent;
             let priceText = productCard.querySelector(".product-price").textContent;
-            let price = parseInt(priceText);
+            let price = cleanNumber(priceText);
+
 
             let existingProduct = cart.find(p => p.id === id);
 
@@ -175,9 +194,11 @@ function decreaseQuantity(id) {
 function updateCartInfo() {
     counter.textContent = toPersianDigits(cart.length);
 
-
     total = cart.reduce((sum, product) => {
-        return sum + product.price * product.quantity;
+        const price = cleanNumber(product.price);
+        const quantity = cleanNumber(product.quantity);
+
+        return sum + price * quantity;
     }, 0);
 
     totalPriceEl.textContent = total.toLocaleString("fa-IR") + " تومان";
@@ -186,6 +207,7 @@ function updateCartInfo() {
     saveCartToLocalStorage();
 }
 
+
 function clearCart() {
     cart = [];
     cartList.innerHTML = "";
@@ -193,6 +215,8 @@ function clearCart() {
 
     updateCartInfo();
 }
+
+clearCartBtn.addEventListener("click", clearCart);
 
 addBtn();
 loadCartFromLocalStorage();
