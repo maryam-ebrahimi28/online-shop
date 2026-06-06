@@ -3,9 +3,34 @@ const addToCart = document.querySelectorAll(".add-to-cart");
 const cartList = document.getElementById("cart-list");
 const totalPriceEl = document.getElementById("price-to-pay");
 const clearCartBtn = document.getElementById("clear-cart-btn");
+const menuBtn = document.querySelector(".menu-btn");
+const closeBtn = document.querySelector(".close");
+const sidebar = document.getElementById("sidebar");
 
 let cart = [];
 let total = 0;
+
+if (menuBtn && sidebar) {
+    menuBtn.addEventListener("click", () => {
+        sidebar.classList.add("active");
+    });
+}
+
+if (closeBtn && sidebar) {
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+    });
+}
+
+document.addEventListener("click", function(e) {
+    if (sidebar.classList.contains("active") &&
+        !sidebar.contains(e.target) &&
+        !menuBtn.contains(e.target)) {
+
+        sidebar.classList.remove("active");
+    }
+});
+
 
 function saveCartToLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -169,6 +194,7 @@ function clearCart() {
 
     updateCartInfo();
 }
+
 clearCartBtn.addEventListener("click", clearCart);
 
 addBtn();
