@@ -361,6 +361,12 @@ header {
     }
 }
 
+@media (max-width: 900px) {
+    #sidebar-cart-parent {
+        width: 80%;
+    }
+}
+
 /*  بخش با ما در تماس باشد  */
 
 #sec2 {
@@ -430,6 +436,13 @@ header {
     gap: 16px;
 }
 
+#send-btn {
+    grid-column: 1 / -1; 
+    width: 50%;          
+    margin: 20px auto 0 auto; 
+}
+
+
 @media (max-width: 600px) {
     #content-form {
         grid-template-columns: 1fr;
@@ -464,6 +477,12 @@ header {
     .contact-us-item img {
         width: fit-content;
     }
+
+    #send-btn {
+    grid-column: 1 / -1; 
+    width: 100%;          
+    margin: 20px auto 0 auto; 
+}
 }
 
 #send-btn {
@@ -545,6 +564,10 @@ footer {
     gap: 16px;
 }
 
+.description {
+    line-height: 1.8;
+}
+
 #footer-btn {
     display: flex;
     gap: 10px;
@@ -600,4 +623,74 @@ footer {
         width: 100%;
         align-items: center;
     }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    background-color: var(--color-white);
+    height: fit-content;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 8px;
+    border-top-left-radius: var(--radius-sm);
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.sidebar h2 {
+    margin-top: 8px;
+    color: var(--color-white);
+    text-align: center;
+    background-color: var(--color-accent);
+    padding: 16px;
+    width: 98%;
+    border-radius: var(--radius-sm);
+}
+
+.sidebar.active {
+    right: 0;
+    box-shadow: -20px 0px 100px rgb(0, 0, 0);
+}
+
+.close {
+    padding: 8px;
+    margin-top: 8px;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white);
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--color-accent);
+    align-self: flex-end;
+    margin-left: 8px;
+}
+
+.main-menu-sidebar {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    width: 98%;
+}
+
+.btns {
+    height: 50px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light);
+    width: 98%;
+}
+
+.btns a {
+    color: var(--color-text);
+    font-weight: bold;
 }
