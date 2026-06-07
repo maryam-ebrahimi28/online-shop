@@ -1,25 +1,20 @@
-# Online Shop UI
+Online Shop UI — Fadak Store
+A fully functional Persian e-commerce interface built with Vanilla JavaScript, HTML5, and CSS3 — no frameworks used.
+Features
 
-A responsive online shop interface developed using HTML, CSS, and JavaScript.
+🛒 Smart shopping cart (no duplicate items, quantity management)
+💾 Persistent cart via LocalStorage (survives page refresh)
+➕➖ Increase/decrease quantity with auto-remove at zero
+🗑️ Clear entire cart functionality
+📱 Responsive design with hamburger menu for mobile
+🔢 Persian number conversion
+💰 Real-time total price calculation
 
-## Features
+Technologies
 
-* Responsive Design
-* Shopping Cart Functionality
-* Local Storage Support
-* Product Quantity Management
-* Persian Number Conversion
+HTML5
+CSS3
+Vanilla JavaScript (no frameworks)
 
-## Technologies
-
-* HTML5
-* CSS3
-* JavaScript
-
-## Project Preview
-
-![Project Screenshot](screenshot.png)
-
-## Author
-
+Author
 Maryam Ebrahimi
